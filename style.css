@@ -1,0 +1,17 @@
+body {
+    text-align: center;
+}
+
+.rps-btns {
+    display: flex;
+    justify-content: center;
+}
+button {
+    width: 150px;
+    height: 150px;
+    font-size: 55px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 5px;
+    border: 2px solid darkgrey;
+    margin: 8px 8px;
+}

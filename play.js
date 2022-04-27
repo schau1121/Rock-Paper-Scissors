@@ -1,27 +1,3 @@
-/*
-function computerPlay() {
-    this function should randomly return rock, paper, or scissors
-}
-
-function playRound(playerSelection, computerSelection) {
-    if player is rock and computer is scissors: player wins
-    if player is rock and computer is paper: computer wins
-
-    if player is paper and computer is rock: player wins
-    if player is paper and computer is scissors: computer wins
-    
-    if player is scissors and computer is paper: player wins
-    if player is scissors and computer is rock: computer wins
-}
-
-function game() {
-    get userInput using prompt()
-    while user input isnt 'q':
-        computerInput = computerPlay()
-        playRound(userInput, computerInput);
-    }
-*/
-
 //Math.random() is multiplied by 3 since .random() returns a value
 //between [0,1), so we should never encounter a value of 3
 function computerPlay() {
@@ -71,13 +47,14 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    let userInput = prompt("Rock, paper, or scissors? (Enter 'Q' if you would like to end the game)");
-    userInput = userInput.toLowerCase();
+    //let userInput = prompt("Rock, paper, or scissors? (Enter 'Q' if you would like to end the game)");
+    //userInput = userInput.toLowerCase();
 
     let userScore = 0;
     let cpuScore = 0;
+    let numRounds = 0;
 
-    while(userInput !== "q") {
+    while(numRounds < 5) {
         let cpuInput = computerPlay();
         let result = playRound(userInput, cpuInput);
         
@@ -92,6 +69,7 @@ function game() {
         
         userInput = prompt("Rock, paper, or scissors? (Enter 'Q' if you would like to end the game)");
         userInput = userInput.toLowerCase();
+        numRounds++;
     }
     let output = "Game has ended!\nYour Score: " + userScore + "\nComputer Score: " + cpuScore;
     console.log(output);
