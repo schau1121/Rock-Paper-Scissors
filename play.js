@@ -2,6 +2,8 @@ let userScore = 0;
 let cpuScore = 0;
 let roundWinner = "";
 let roundMessage = "";
+let cpuMove = "";
+let userMove = "";
 
 const body = document.querySelector("body");
 const buttons = document.querySelectorAll(".rps-btn");
@@ -11,6 +13,8 @@ const winner_message = document.getElementById("end-msg-winner");
 const overlay = document.getElementById("overlay");
 const close_overlay_btn = document.getElementById("close-overlay");
 const replay_btn = document.getElementById("replay-btn");
+const player_score = document.querySelector("#player-score");
+const cpu_score = document.querySelector("#cpu-score");
 
 //Math.random() is multiplied by 3 since .random() returns a value
 //between [0,1), so we should never encounter a value of 3
@@ -28,29 +32,29 @@ function playRound(playerSelection, computerSelection) {
     switch(playerSelection) {
         case "rock":
             if(computerSelection === "scissors") {
-                return ["You Win! Rock beats Scissors", 0];
+                return ["You win! Rock beats Scissors", 0];
             } else if(computerSelection === "paper") {
-                return ["You Lose! Paper beats Rock", 1];
+                return ["You lose! Paper beats Rock", 1];
             } else {
-                return ["It's a Tie!", 2];
+                return ["It's a tie!", 2];
             }
             break;
         case "paper":
             if(computerSelection === "rock") {
-                return ["You Win! Paper beats Rock", 0];
+                return ["You win! Paper beats Rock", 0];
             } else if(computerSelection === "scissors") {
-                return ["You Lose! Scissors beats Paper", 1];
+                return ["You lose! Scissors beats Paper", 1];
             } else {
-                return ["It's a Tie!", 2];
+                return ["It's a tie!", 2];
             }
             break;
         case "scissors":
             if(computerSelection === "paper") {
-                return ["You Win! Scissors beats Paper", 0];
+                return ["You win! Scissors beats Paper", 0];
             } else if(computerSelection === "rock") {
-                return ["You Lose! Rock beats Scissors", 1];
+                return ["You lose! Rock beats Scissors", 1];
             } else {
-                return ["It's a Tie!", 2];
+                return ["It's a tie!", 2];
             }
             break;
         default:
@@ -60,8 +64,10 @@ function playRound(playerSelection, computerSelection) {
 
 function updateScore(userInput) {
     console.log("updateScore called");
-    let cpuMove = computerPlay();
-    let result = playRound(userInput, cpuMove);
+    cpuMove = computerPlay();
+    userMove = userInput;
+
+    let result = playRound(userMove, cpuMove);
     roundMessage = result[0];
     if(result[1] === 0) {
         roundWinner = "Player";
@@ -76,7 +82,37 @@ function updateScore(userInput) {
 
 function updateScoreBoard() {
     //update scoreboard with round winner and new scores
+    player_score.childNodes[0].nodeValue = `Player: ${userScore}`;
+    cpu_score.childNodes[0].nodeValue = `Computer: ${cpuScore}`;
     message.textContent = roundMessage;
+
+    updateMoveSelection();
+}
+
+function updateMoveSelection() {
+    switch(userMove) {
+        case "rock":
+            player_score.childNodes[1].textContent = "✊";
+            break;
+        case "paper":
+            player_score.childNodes[1].textContent = "✋";
+            break;
+        case "scissors":
+            player_score.childNodes[1].textContent = "✌";
+            break;
+    }
+
+    switch(cpuMove) {
+        case "rock":
+            cpu_score.childNodes[1].textContent = "✊";
+            break;
+        case "paper":
+            cpu_score.childNodes[1].textContent = "✋";
+            break;
+        case "scissors":
+            cpu_score.childNodes[1].textContent = "✌";
+            break;
+    }
 }
 
 function gameIsOver() {

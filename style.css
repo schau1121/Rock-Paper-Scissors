@@ -10,10 +10,17 @@ h1 {
     font-family:'Days One', sans-serif;
 }
 
+img {
+    width: 30px;
+    margin: 12px;
+}
+
 #app {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    justify-content: space-between;
+    background-color: #383838;
 }
 
 .header {
@@ -33,20 +40,32 @@ h1 {
     flex: 0 0 auto;
 }
 
-.scoreboard, .rps-btns {
-    padding: 50px 20px;
-    background-color: #383838;
+.scoreboard {
+    padding: 25px 20px;
     color: #F7F7FF;
 }
 
-.scoreboard {
-    height: 100px;
+.score-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.move-selection {
+    height: 150px;
+    width: 150px;
+    border-radius: 5px;
+    border: #F7F7FF solid 2px;
+    margin: 15px 15px;
+    font-size: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .rps-btns {
-    display: flex;
-    justify-content: center;
-    flex: 1;
+    color: #F7F7FF;
+    padding-bottom: 25px;
 }
 
 .rps-btn {
@@ -57,6 +76,22 @@ h1 {
     border-radius: 5px;
     margin: 8px 8px;
     border: 2px solid white;
+    transition: all 0.07s ease;
+}
+
+.rps-btn:hover {
+    background-color: #4d4d4d;
+    transform: scale(1.1);
+}
+
+.fa-github {
+    color: var(--primary-light);
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.fa-github:hover {
+    transform: rotate(360deg) scale(1.2);
 }
 
 #overlay {
@@ -81,7 +116,7 @@ h1 {
     width: 460px;
     height: 195px;
     background-color: #0B132B;
-    border-radius: 5px;
+    border-radius: 10px;
     flex-direction: column;
     color: #F7F7FF;
     font-size: 30px;

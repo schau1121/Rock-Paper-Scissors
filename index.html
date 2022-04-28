@@ -15,12 +15,14 @@
             <h1>ROCK PAPER SCISSORS</H1>
         </div>
         <div class="scoreboard">
-            Who will win?
+            First to five points wins!
             <div class="score-container">
-                <div id="player_score">
+                <div id="player-score">
+                    Player:
                     <div class="move-selection"></div>
                 </div>
-                <div id="cpu_score">
+                <div id="cpu-score">
+                    Computer:
                     <div class="move-selection"></div>
                 </div>
             </div>
@@ -32,7 +34,14 @@
             <button class="rps-btn" id="scissors">✌</button>
         </div>
         <div class="footer">
-            LINK GITHUB HERE
+            Copyright ©
+            <script>
+                document.write(new Date().getFullYear())
+            </script>
+            schau1121
+            <a href="https://github.com/schau1121">
+                <i><img class="fab fa-github" src="./images/github.png"></i>
+            </a>
         </div>
         <div id="overlay">
             <div id="end-msg-block">
