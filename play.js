@@ -1,3 +1,14 @@
+let userScore = 0;
+let cpuScore = 0;
+let roundWinner = "";
+let roundMessage = "";
+
+const body = document.querySelector("body");
+const buttons = document.querySelectorAll(".rps-btn");
+const scoreboard = document.querySelector(".scoreboard");
+const score = document.getElementById("score");
+const message = document.querySelector(".msg")
+
 //Math.random() is multiplied by 3 since .random() returns a value
 //between [0,1), so we should never encounter a value of 3
 function computerPlay() {
@@ -6,12 +17,10 @@ function computerPlay() {
     return moves[rand];
 }
 
-
 //returns an object with two values: an output string and an integer
 //which represents which player won the game
 //0 indicates the player won, 1 indicates the computer won
 //2 represents a tie
-
 function playRound(playerSelection, computerSelection) {
     switch(playerSelection) {
         case "rock":
@@ -46,33 +55,58 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game() {
-    //let userInput = prompt("Rock, paper, or scissors? (Enter 'Q' if you would like to end the game)");
-    //userInput = userInput.toLowerCase();
-
-    let userScore = 0;
-    let cpuScore = 0;
-    let numRounds = 0;
-
-    while(numRounds < 5) {
-        let cpuInput = computerPlay();
-        let result = playRound(userInput, cpuInput);
-        
-        if(result[1] === 0) {
-            userScore++;
-        }
-        else if(result[1] === 1) {
-            cpuScore++;
-        }
-        
-        console.log(result[0]);
-        
-        userInput = prompt("Rock, paper, or scissors? (Enter 'Q' if you would like to end the game)");
-        userInput = userInput.toLowerCase();
-        numRounds++;
+function updateScore(userInput) {
+    console.log("updateScore called");
+    let cpuMove = computerPlay();
+    let result = playRound(userInput, cpuMove);
+    roundMessage = result[0];
+    if(result[1] === 0) {
+        roundWinner = "Player";
+        userScore++;
+    } else if(result[1] === 1) {
+        roundWinner = "Computer";
+        cpuScore++;
+    } else {
+        roundWinner = "Tie";
     }
-    let output = "Game has ended!\nYour Score: " + userScore + "\nComputer Score: " + cpuScore;
-    console.log(output);
-
-    return null;
 }
+
+function updateScoreBoard() {
+    //update scoreboard with round winner and new scores
+    let text_to_change = scoreboard.childNodes[0];
+    text_to_change.nodeValue = (roundWinner === "Tie") 
+            ? "It's a tie..." 
+            : roundWinner + " wins!";
+    score.textContent = `Player: "${userScore}"     Computer: ${cpuScore}`;
+    message.textContent = roundMessage;
+}
+
+function gameIsOver() {
+    return (userScore === 5 || cpuScore === 5);
+}
+
+//want to set overlay with winner message and replay button
+function setFinalMessage() {
+}
+
+function replay() {
+    userScore = 0;
+    cpuScore = 0;
+}
+
+function handleClick(button_id) {
+    if(gameIsOver()) return;
+
+    updateScore(button_id);
+    updateScoreBoard();
+    
+    if(gameIsOver()) {
+        console.log("Game Over");
+        setFinalMessage();
+    }
+}
+
+buttons.forEach(button => button.addEventListener("click", e =>{
+    handleClick(e.target.id);
+}));
+
