@@ -3,25 +3,60 @@
 body {
     font-family: 'Roboto Mono', monospace;
     text-align: center;
+    margin: 0%;
 }
 
 h1 {
     font-family:'Days One', sans-serif;
 }
 
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #0B132B;
+    color: #F7F7FF;
+    height: 100px;
+    padding-top: 10px;
+}
+
+.footer {
+    background-color: #0B132B;
+    color: #F7F7FF;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 auto;
+}
+
+.scoreboard, .rps-btns {
+    padding: 50px 20px;
+    background-color: #383838;
+    color: #F7F7FF;
+}
+
+.scoreboard {
+    height: 100px;
+}
+
 .rps-btns {
     display: flex;
     justify-content: center;
+    flex: 1;
 }
 
 .rps-btn {
     width: 150px;
     height: 150px;
     font-size: 55px;
-    background-color: rgb(221, 221, 221);
+    background-color: #383838;
     border-radius: 5px;
-    border: 2px solid darkgrey;
     margin: 8px 8px;
+    border: 2px solid white;
 }
 
 #overlay {
@@ -58,8 +93,9 @@ h1 {
     color: #F7F7FF;
     font-size: large;
     height: 50px;
-    width: 330px;
-    padding: 15px 25px;
+    width: 400px;
+    padding: 0px 25px;
     border: 1px white solid;
     border-radius: 5px;
+    font-family: 'Roboto Mono', monospace;
 }

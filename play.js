@@ -6,7 +6,6 @@ let roundMessage = "";
 const body = document.querySelector("body");
 const buttons = document.querySelectorAll(".rps-btn");
 const scoreboard = document.querySelector(".scoreboard");
-const score = document.getElementById("score");
 const message = document.querySelector(".msg")
 const winner_message = document.getElementById("end-msg-winner");
 const overlay = document.getElementById("overlay");
@@ -77,11 +76,6 @@ function updateScore(userInput) {
 
 function updateScoreBoard() {
     //update scoreboard with round winner and new scores
-    let text_to_change = scoreboard.childNodes[0];
-    text_to_change.nodeValue = (roundWinner === "Tie") 
-            ? "It's a tie..." 
-            : roundWinner + " wins!";
-    score.textContent = `Player: ${userScore} Computer: ${cpuScore}`;
     message.textContent = roundMessage;
 }
 
@@ -101,9 +95,6 @@ function removeModal() {
 
 function replay() {
     removeModal();
-    let text_to_change = scoreboard.childNodes[0];
-    text_to_change.nodeValue = "Who will win?";
-    score.textContent = "";
     message.textContent = "";
     userScore = 0;
     cpuScore = 0;
