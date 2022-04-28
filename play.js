@@ -81,7 +81,7 @@ function updateScoreBoard() {
     text_to_change.nodeValue = (roundWinner === "Tie") 
             ? "It's a tie..." 
             : roundWinner + " wins!";
-    score.textContent = `Player: "${userScore}"     Computer: ${cpuScore}`;
+    score.textContent = `Player: ${userScore} Computer: ${cpuScore}`;
     message.textContent = roundMessage;
 }
 
