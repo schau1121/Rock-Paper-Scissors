@@ -8,6 +8,10 @@ const buttons = document.querySelectorAll(".rps-btn");
 const scoreboard = document.querySelector(".scoreboard");
 const score = document.getElementById("score");
 const message = document.querySelector(".msg")
+const winner_message = document.getElementById("end-msg-winner");
+const overlay = document.getElementById("overlay");
+const close_overlay_btn = document.getElementById("close-overlay");
+const replay_btn = document.getElementById("replay-btn");
 
 //Math.random() is multiplied by 3 since .random() returns a value
 //between [0,1), so we should never encounter a value of 3
@@ -87,9 +91,20 @@ function gameIsOver() {
 
 //want to set overlay with winner message and replay button
 function setFinalMessage() {
+    overlay.style.display = "flex";
+    winner_message.textContent = (userScore === 5) ? "You won!!!" : "You lost...";
+}
+
+function removeModal() {
+    overlay.style.display = "none";
 }
 
 function replay() {
+    removeModal();
+    let text_to_change = scoreboard.childNodes[0];
+    text_to_change.nodeValue = "Who will win?";
+    score.textContent = "";
+    message.textContent = "";
     userScore = 0;
     cpuScore = 0;
 }
@@ -109,4 +124,9 @@ function handleClick(button_id) {
 buttons.forEach(button => button.addEventListener("click", e =>{
     handleClick(e.target.id);
 }));
-
+close_overlay_btn.onclick = () => {
+    removeModal();
+};
+replay_btn.onclick = () => {
+    replay();
+};

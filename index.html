@@ -10,7 +10,11 @@
 </head>
 
 <body>
+    <div class="header">
+        <h1>ROCK PAPER SCISSORS</H1>
+    </div>
     <div class="scoreboard">
+        Who will win?
         <p id="score"></p>
     </div>
     <div class="rps-btns">
@@ -19,5 +23,12 @@
         <button class="rps-btn" id="scissors">✌</button>
     </div>
     <div class="msg"></div>
+    <div id="overlay">
+        <div id="end-msg-block">
+            <span id="close-overlay">&times;</span>
+            <p id="end-msg-winner"></p>
+            <button id="replay-btn">Would you like to play again? ↻</button>
+        </div>
+    </div>
 </body>
 </html>
